@@ -954,6 +954,10 @@ func produceSLURMScript(
 		prefix += "\n" + wstunnelClientCommands + "\n"
 	}
 
+	if username, ok := metadata.Annotations["test/username"]; ok {
+		prefix += "\n" + "export TEST_USERNAME=" + username + "\n"
+	}
+
 	if preExecAnnotations, ok := metadata.Annotations["slurm-job.vk.io/pre-exec"]; ok {
 		prefix += "\n" + preExecAnnotations
 	}
